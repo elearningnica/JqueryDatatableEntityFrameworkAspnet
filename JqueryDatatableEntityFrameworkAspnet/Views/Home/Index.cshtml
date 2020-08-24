@@ -1,0 +1,45 @@
+﻿@model JqueryDatatableEntityFrameworkAspnet.Models.Customer
+
+<link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+@section Scripts {
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+
+            $('#table_td').DataTable({
+                "info": true,
+                "processing": true,
+                "bDestroy": true,
+                "ajax": {
+                    "url": "Home/loadData",
+                    "type": "GET",
+                    "datatype": "json",
+                },
+                "rowCallback": function (row, data, index) {
+                },
+                "columns": [
+                    { "data": "CustomerKey", "autoWidth": true },
+                    { "data": "FirstName", "autoWidth": true },
+                    { "data": "LastName", "autoWidth": true },
+                    { "data": "Phone", "autoWidth": true },
+                    { "data": "EmailAddress", "autoWidth": true }
+                ]
+            });
+        });
+    </script>
+}
+
+<table id="table_td">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(x => x.CustomerKey)</th>
+            <th>@Html.DisplayNameFor(x => x.FirstName)</th>
+            <th>@Html.DisplayNameFor(x => x.LastName)</th>
+            <th>@Html.DisplayNameFor(x => x.Phone)</th>
+            <th>@Html.DisplayNameFor(x => x.EmailAddress)</th>
+        </tr>
+    </thead>
+</table>
